@@ -1,6 +1,190 @@
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
+* {
   box-sizing: border-box;
+}
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.siteName a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#tools a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#tools a:hover {
+  color: #00bfff;
+  text-decoration: wavy underline;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+#wrapper {
+  background-color: white;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 5px solid #00bfff;
+  border-radius: 5px;
+  min-height: 100vh;
+}
+
+nav {
+  background-color: #333;
+  margin: 10px 0;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.nav-list li a:hover {
+  background-color: #00bfff;
+  color: #000;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.hero-details {
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid #00bfff;
+  color: #00bfff;
+  padding: 15px;
+  z-index: 2;
+  margin-bottom: -20px;
+  text-align: center;
+  position: absolute;
+}
+
+.hero-details h2 {
+  margin-top: 0;
+}
+
+.hero-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.own-today-link img {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+  max-width: 200px;
+}
+
+.hero-image {
+  width: 100%;
+  z-index: 1;
+  height: auto;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.reviews li {
+  margin-bottom: 30px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.upgrade-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.upgrade-card {
+  text-align: center;
+}
+
+.upgrade-card .img-box {
+  background-color: #00bfff;
+  border: 1px solid #333;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.upgrade-card img {
+  height: 50px;
+  width: auto;
+}
+
+/* --- Desktop Layout --- */
+@media screen and (min-width: 800px) {
+  .hero {
+    position: relative;
+  }
+
+  .hero-image {
+    order: 1;
+  }
+
+  .hero-details {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1px solid #00bfff;
+    color: #00bfff;
+    order: 2;
+  }
+
+  .own-today-link img {
+    margin: 10px 0;
+  }
+
+  .flex-container {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 30px;
+  }
+
+  .reviews,
+  .upgrades {
+    width: 48%;
+  }
 }
