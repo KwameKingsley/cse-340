@@ -58,3 +58,30 @@ Util.buildClassificationGrid = async function (data) {
     }
     return grid
 }
+
+/* **************************************
+* Build the vehicle detail view HTML
+* ************************************ */
+Util.buildVehicleDetail = async function (data) {
+    let display
+    if (data) {
+        display = '<div id="detail-wrapper">'
+        display += `<img src="${data.inv_image}" alt="${data.inv_make} ${data.inv_model}">`
+        display += '<div class="details-content">'
+        display += `<h2>${data.inv_year} ${data.inv_make} ${data.inv_model}</h2>`
+        display += `<p class="price-tag">Price: $${new Intl.NumberFormat('en-US').format(data.inv_price)}</p>`
+        display += `<p><strong>Description:</strong> ${data.inv_description}</p>`
+        display += `<p><strong>Mileage:</strong> ${new Intl.NumberFormat('en-US').format(data.inv_miles)} miles</p>`
+        display += `<p><strong>Color:</strong> ${data.inv_color}</p>`
+        display += '</div>'
+        display += '</div>'
+    } else {
+        display = '<p class="notice">Sorry, that vehicle could not be found.</p>'
+    }
+    return display
+}
+
+/* ****************************************
+ * Middleware to handle controller errors
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)

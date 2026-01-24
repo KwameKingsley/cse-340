@@ -10,6 +10,7 @@ const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
+const utilities = require("./utilities/")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 
@@ -42,4 +43,18 @@ const host = process.env.HOST
  *************************/
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
+})
+
+/* ***********************
+ * Error Handling Middleware
+ * ***********************/
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+
+  res.status(err.status || 500).render("errors/error", {
+    title: 'Server Error',
+    message: "Oh no! There was a crash. Maybe try a different route?",
+    nav
+  })
 })
