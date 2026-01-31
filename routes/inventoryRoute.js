@@ -20,6 +20,16 @@ router.get("/", utilities.handleErrors(invController.buildManagement));
 // Route to deliver Add Classification view
 router.get("/addClassification", utilities.handleErrors(invController.buildAddClassification));
 
+// Route to deliver Add Vehicle view
+router.get("/addInventory", utilities.handleErrors(invController.buildAddInventory));
+
+// Route to process the inventory 
+router.post(
+    "/addInventory",
+    invValidate.inventoryRules(),
+    invValidate.checkInvData,
+    utilities.handleErrors(invController.addInventory));
+
 // Route to process the New Classification with validation
 router.post(
     "/addClassification",
