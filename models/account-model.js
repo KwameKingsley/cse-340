@@ -12,4 +12,29 @@ async function registerAccount(account_firstname, account_lastname, account_emai
     }
 }
 
-module.exports = { registerAccount };
+/* *********************
+* Check for existing email
+************************/
+async function checkExistingEmail(email) {
+    try {
+        const sql = "SELECT inv_email FROM public.inventory WHERE inv_email = $1"
+        const email = await pool.query(sql, [account_email])
+        return email.rowCount
+    } catch (error) {
+        return error.message
+    }
+}
+
+/* ********************* 
+* Add New Classification
+*******************************/
+async function addClassification(classification_name) {
+    try {
+        const sql = "INSERT INTO public.classification (classification_name) VALUES ($1) RETURNING *"
+        return await pool.query(sql, [classification_name])
+    } catch (error) {
+        return error.message
+    }
+}
+
+module.exports = { registerAccount, checkExistingEmail, addClassification };

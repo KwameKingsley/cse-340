@@ -6,19 +6,29 @@
 
         <%- messages() %>
 
-            <div class="login-container">
-                <form action="/account/login" method="post" id="loginForm">
-                    <label for="account_email">Email Address:</label>
-                    <input type="email" name="account_email" id="account_email" required
-                        placeholder="Enter a valid email address">
+            <% if (errors) { %>
+                <ul class="notice">
+                    <% errors.array().forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
 
-                    <label for="account_password">Password:</label>
-                    <input type="password" name="account_password" id="account_password" required>
+                    <div class="login-container">
+                        <form id="loginForm" action="/account/login" method="post">
+                            <label for="account_email">Email Address:</label>
+                            <input type="email" name="account_email" id="account_email" required
+                                placeholder="Enter a valid email address" value="<%= locals.account_email %>"> <label
+                                for="account_password">Password:</label>
+                            <input type="password" name="account_password" id="account_password" required
+                                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
 
-                    <button type="submit">Login</button>
-                </form>
+                            <button type="submit">Login</button>
+                        </form>
 
-                <p class="signup-link">
-                    No account? <a href="/account/register">Sign-up</a>
-                </p>
-            </div>
+                        <p class="signup-link">
+                            No account? <a href="/account/register">Sign-up</a>
+                        </p>
+                    </div>
