@@ -28,7 +28,7 @@ router.post(
     "/addInventory",
     invValidate.inventoryRules(),
     invValidate.checkInvData,
-    utilities.handleErrors(invController.addInventory));
+    utilities.handleErrors(invController.addVehicle));
 
 // Route to process the New Classification with validation
 router.post(
@@ -36,6 +36,24 @@ router.post(
     invValidate.classificationRules(),
     invValidate.checkClassData,
     utilities.handleErrors(invController.addClassification));
+
+/* ***************************
+ * Process Inventory Update
+ * ************************** */
+router.post(
+    "/update",
+    invValidate.inventoryRules(),
+    invValidate.checkUpdateData,
+    utilities.handleErrors(invController.updateInventory)
+)
+
+// Route to Return JSON instead of HTML
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+
+/* ***************************
+ * Build Edit Inventory view
+ * ************************** */
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
 
 
 module.exports = router;

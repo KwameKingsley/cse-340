@@ -377,7 +377,7 @@ input:required:valid {
 #registerForm button[type="submit"] {
   margin-top: 25px;
   padding: 10px;
-  background-color: #eee;
+  background-color: #2f2d2d;
   border: 1px solid #888;
   width: fit-content;
   cursor: pointer;
@@ -407,7 +407,7 @@ input:required:valid {
   text-decoration: underline;
 }
 
-/* Generic Form Styling (Works for Task 2 and Task 3) */
+/* Generic Form Styling */
 .form-container {
   background-color: #f9f9f9;
   padding: 20px;
@@ -463,6 +463,82 @@ form button:hover {
   margin-bottom: 20px;
 }
 
+/* Style the Management Table */
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#inventoryDisplay th {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+#inventoryDisplay td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+#inventoryDisplay a {
+  display: inline-block;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+  min-width: 70px;
+}
+
+#inventoryDisplay a[title="Click to update"] {
+  background-color: green;
+  color: white;
+}
+
+#inventoryDisplay a[title="Click to delete"] {
+  background-color: red;
+  color: white;
+}
+
+#inventoryDisplay a:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.inventory-selection-zone {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  border-left: 5px solid #333;
+}
+
+#classificationList {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#classificationList:focus {
+  outline: none;
+  border-color: #4A90E2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+#inventoryDisplay {
+  margin-top: 30px;
+  width: 100%;
+  border-collapse: collapse;
+}
 
 @media screen and (min-width: 600px) {
   #inv-display {

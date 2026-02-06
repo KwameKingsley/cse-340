@@ -18,6 +18,7 @@ const session = require("express-session")
 const pool = require('./database/')
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 /* ***********************
  * View Engine and Templates
@@ -25,6 +26,11 @@ const bodyParser = require("body-parser")
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") //not at views root
+
+/* ***********************
+ * Routes
+ *************************/
+app.use(express.static("public"))
 
 /* ***********************
  * Middleware
@@ -42,6 +48,8 @@ app.use(session({
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))// for parsing application/x-www-form-urlencoded
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 
 // Express messages middleware
@@ -50,12 +58,6 @@ app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
-
-
-/* ***********************
- * Routes
- *************************/
-app.use(express.static("public"))
 
 //Index Route
 app.get("/", baseController.buildHome)
