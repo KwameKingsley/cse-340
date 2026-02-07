@@ -57,3 +57,23 @@
                         </form>
                     </section>
                 </div>
+
+                <script>
+                    const form = document.querySelector("#updateAccountForm");
+                    const updateBtn = form.querySelector("button");
+                    const inputs = form.querySelectorAll("input:not([type='hidden'])");
+
+                    updateBtn.disabled = true;
+
+                    form.addEventListener("input", () => {
+                        let changed = false;
+
+                        inputs.forEach(input => {
+                            if (input.value !== input.defaultValue) {
+                                changed = true;
+                            }
+                        });
+
+                        updateBtn.disabled = !changed;
+                    });
+                </script>
