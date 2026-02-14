@@ -27,3 +27,25 @@
                 </p>
             </section>
             <% } %>
+                <h3>Your Product Reviews</h3>
+                <% if (locals.userReviews && userReviews.length> 0) { %>
+                    <ul class="review-management">
+                        <% userReviews.forEach(review=> { %>
+                            <li>
+                                <div class="review-info">
+                                    <strong>
+                                        <%= review.inv_make %>
+                                            <%= review.inv_model %>
+                                    </strong>
+                                    <span>(Reviewed on <%= new Date(review.review_date).toLocaleDateString() %>)</span>
+                                </div>
+                                <div class="review-actions">
+                                    <a href="/review/edit/<%= review.review_id %>">Edit</a> |
+                                    <a href="/review/delete/<%= review.review_id %>">Delete</a>
+                                </div>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <% } else { %>
+                        <p>You have not authored any reviews yet.</p>
+                        <% } %>

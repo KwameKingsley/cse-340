@@ -63,6 +63,7 @@ app.use(function (req, res, next) {
 app.get("/", baseController.buildHome)
 app.use("/inv", inventoryRoute)
 app.use("/account", accountRoute)
+app.use("/review", require("./routes/reviewRoute"))
 
 /* ***********************
  * Local Server Information

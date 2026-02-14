@@ -1,6 +1,7 @@
 const e = require("connect-flash")
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
+const reviewModel = require("../models/review-model")
 
 const invCont = {}
 
@@ -34,6 +35,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
 invCont.buildByInvId = async function (req, res, next) {
     const inv_id = req.params.invId
     const data = await invModel.getInventoryByInvId(inv_id)
+    const reviews = await reviewModel.getReviewsByInvId(inv_id)
     const detailHtml = await utilities.buildVehicleDetail(data)
     let nav = await utilities.getNav()
     const vehicleName = `${data.inv_make} ${data.inv_model}`
@@ -41,6 +43,9 @@ invCont.buildByInvId = async function (req, res, next) {
         title: vehicleName,
         nav,
         detailHtml,
+        inv_id,
+        reviews,
+        errors: null,
     })
 }
 

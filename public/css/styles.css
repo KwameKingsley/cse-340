@@ -560,9 +560,96 @@ button:disabled {
   border: 1px solid #999999;
 }
 
+.review-section {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.review-item {
+  margin-bottom: 1px;
+  padding: 15px 0;
+}
+
+#review_text {
+  height: 100px;
+  resize: vertical;
+}
+
+textarea {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.review-management li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  list-style: none;
+}
+
+.review-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.review-actions a {
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white !important;
+  font-weight: bold;
+}
+
+.review-actions a[href*="edit"] {
+  background-color: #007bff;
+}
+
+.review-actions a[href*="delete"] {
+  background-color: #dc3545;
+}
+
+.review-actions a:hover {
+  opacity: 0.8;
+  color: #fff;
+}
+
+.review-management-links {
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+.edit-link {
+  color: #0056b3;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.delete-link {
+  color: #cc0000;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.edit-link:hover,
+.delete-link:hover {
+  text-decoration: underline;
+}
+
 @media screen and (min-width: 600px) {
   #inv-display {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .review-section {
+    padding: 0 10px;
   }
 
   nav ul li a {

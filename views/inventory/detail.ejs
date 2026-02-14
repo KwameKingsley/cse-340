@@ -1,9 +1,70 @@
-<% if (title) { %>
-    <h1>
-        <%= title %>
-    </h1>
-    <% } else { res.redirect('/') } %>
+<% if (locals.errors) { %>
+    <div class="notice">
+        <p>There are validation errors:</p>
+        <ul>
+            <% errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+    </div>
+    <% } %>
+        <% if (title) { %>
+            <h1>
+                <%= title %>
+            </h1>
+            <% } else { res.redirect('/') } %>
+                <div class="detail-container">
+                    <%- detailHtml %>
+                </div>
+                <hr>
+                <section class="review-section">
+                    <h2>Customer Reviews</h2>
+                    <%- messages() %>
+                        <% if (locals.loggedin) { %>
+                            <form action="/review/add" method="post" class="form-container">
+                                <label for="review_text">Leave a Review:</label>
+                                <textarea name="review_text" id="review_text" required minlength="10"
+                                    placeholder="What did you think of this vehicle?"><%= locals.review_text %></textarea>
+                                <input type="hidden" name="inv_id" value="<%= locals.inv_id %>">
+                                <input type="hidden" name="account_id" value="<%= locals.accountData.account_id %>">
+                                <button type="submit">Submit Review</button>
+                            </form>
 
-        <div class="detail-container">
-            <%- detailHtml %>
-        </div>
+                            <% } else { %>
+
+                                <p class="form-instruction">Please <a href="/account/login">Login</a> to write a
+                                    review.
+
+                                </p>
+
+                                <% } %>
+                                    <div class="reviews-list">
+                                        <% if (reviews && reviews.length> 0) { %>
+                                            <% reviews.forEach(review=> { %>
+                                                <div class="review-item">
+                                                    <p><strong>
+                                                            <%= review.account_firstname %>
+                                                        </strong> wrote on <%= new
+                                                            Date(review.review_date).toLocaleDateString() %>:</p>
+                                                    <p>
+                                                        <%= review.review_text %>
+                                                    </p>
+
+                                                    <% if (locals.loggedin &&
+                                                        locals.accountData.account_id===review.account_id) { %>
+                                                        <div class="review-management-links">
+                                                            <a href="/review/edit/<%= review.review_id %>"
+                                                                class="edit-link">Edit</a> |
+                                                            <a href="/review/delete/<%= review.review_id %>"
+                                                                class="delete-link">Delete</a>
+                                                        </div>
+                                                        <% } %>
+                                                </div>
+                                                <% }) %>
+                                                    <% } else { %>
+                                                        <p>No reviews yet. Be the first!</p>
+                                                        <% } %>
+                                    </div>
+                </section>

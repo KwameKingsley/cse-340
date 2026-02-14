@@ -1,0 +1,11 @@
+<h3>Manage Your Reviews</h3>
+<ul>
+    <% myReviews.forEach(review=> { %>
+        <li>
+            <%= review.inv_make %>
+                <%= review.inv_model %> (Reviewed on <%= review.review_date %>)
+                        <a href="/review/edit/<%= review.review_id %>">Edit</a> |
+                        <a href="/review/delete/<%= review.review_id %>">Delete</a>
+        </li>
+        <% }) %>
+</ul>
